@@ -6,7 +6,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Main {
     public static void main(String[] args) {
-        boolean  needsToBeSaved = false;
+        boolean needsToBeSaved = false;
         ArrayList myArrList = new ArrayList();
         Scanner in = new Scanner(System.in);
         String instructions =
@@ -48,19 +48,18 @@ public class Main {
                 saveFile(myArrList);
                 needsToBeSaved = false;
             } else if (input.equalsIgnoreCase("m")) {
-                MoveItem(in,myArrList);
+                MoveItem(in, myArrList);
                 needsToBeSaved = true;
             } else if (input.equalsIgnoreCase("o")) {
 
 
-                if (!needsToBeSaved)
-                {
+                if (!needsToBeSaved) {
                     myArrList.clear();
                     openFile(myArrList);
 
-                }else{
+                } else {
 
-                    if (SafeInput.getYNConfirm(in,"would you like to save your list to disk? (y/n): ")){
+                    if (SafeInput.getYNConfirm(in, "would you like to save your list to disk? (y/n): ")) {
                         saveFile(myArrList);
 
                     }
@@ -70,12 +69,11 @@ public class Main {
                 }
 
 
-
             } else if (input.equalsIgnoreCase("q")) {
 
-                if (needsToBeSaved){
+                if (needsToBeSaved) {
                     System.out.println("You have unsaved changes. Please save if you need to.");
-                    if (SafeInput.getYNConfirm(in,"would you like to save your list to disk? (y/n): ")){
+                    if (SafeInput.getYNConfirm(in, "would you like to save your list to disk? (y/n): ")) {
                         saveFile(myArrList);
 
                     }
@@ -96,7 +94,8 @@ public class Main {
             System.out.printf("\nSuccessfully added '%s'\n", item);
         }
     }
-    private static void addItem(String item,ArrayList list) {
+
+    private static void addItem(String item, ArrayList list) {
 
         list.add(item);
 
@@ -140,12 +139,12 @@ public class Main {
 
 
             printList(list);
-            System.out.println("item "+item);
+            System.out.println("item " + item);
             message = "Please enter the new index between 0 and " + listLength;
             int newIndex = SafeInput.getRangedInt(in, message, 0, listLength);
 
 
-            list.add(newIndex,item);
+            list.add(newIndex, item);
 
 
         } else {
@@ -192,7 +191,7 @@ public class Main {
             try (BufferedReader reader = new BufferedReader(new FileReader(selectedFile))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    addItem(line,list); // Add each line to the list
+                    addItem(line, list); // Add each line to the list
                 }
             } catch (IOException e) {
                 System.err.println("Error reading the file: " + e.getMessage());
@@ -202,6 +201,7 @@ public class Main {
             System.out.println("File selection canceled.");
         }
     }
+
     private static void saveFile(ArrayList<String> list) {
         if (currentFilename != null) {
             // Save to the existing filename
@@ -237,8 +237,8 @@ public class Main {
 
         }
     }
-    private static String currentFilename = null;
 
+    private static String currentFilename = null;
 
 
 }
